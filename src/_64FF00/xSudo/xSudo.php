@@ -88,6 +88,11 @@ class xSudo extends PluginBase implements Listener
 		}
 		if($text[0] === "/" and array_key_exists($username,$this->commandCapture)){
 			foreach($this->commandCapture[$username] as $value=>$one){
+				if($value=="console"){
+					$ccs=new ConsoleCommandSender();
+					$ccs->sendMessage(TextFormat::GREEN.$username." sent: ".$text);
+					continue;
+				}
 				$player=$this->getServer()->getPlayer($value);
 				if($player!=null){
 					$player->sendMessage(TextFormat::GREEN.$username." sent: ".$text);
